@@ -178,6 +178,11 @@ CONTENT_SECURITY_POLICY = {
     }
 }
 
+# Respect proxy headers when running behind a TLS-terminating ingress.
+USE_X_FORWARDED_HOST = env.bool("USE_X_FORWARDED_HOST", default=False)
+if USE_X_FORWARDED_HOST:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # If we want to test CSP breaches we need to set a fake reporting URL, so the tests
 # check if it's been called.
 if "TEST_CSP" in os.environ:
@@ -268,7 +273,7 @@ if SSO_MODE.lower() == "external":
     LOGOUT_REDIRECT_URL = env.str("LOGOUT_REDIRECT_URL")
     NOTIFY_API_KEY = env.str("NOTIFY_API_KEY", "")
     NOTIFY_OTP_TEMPLATE_ID = env.str("NOTIFY_OTP_TEMPLATE_ID", "")
-    ENABLED_2FA = True
+    ENABLED_2FA = env.bool("ENABLED_2FA", default=True)
 else:
     sso_host = "dex" if SSO_MODE == "dex" else "localhost"
     OIDC_RP_CLIENT_ID = "my-django-app"

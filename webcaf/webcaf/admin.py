@@ -25,6 +25,10 @@ from webcaf.webcaf.models import (
 )
 from webcaf.webcaf.views.system import SystemForm
 
+admin.site.site_header = "POC for MHCLG"
+admin.site.site_title = "POC for MHCLG"
+admin.site.index_title = "POC for MHCLG"
+
 
 class OptionalFieldsAdminMixin:
     """Mixin to make specified fields optional in the admin form."""

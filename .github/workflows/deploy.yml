@@ -1,0 +1,45 @@
+name: Deploy to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+env:
+  RESOURCE_GROUP: webcaflocalpoc-rg
+  ACR_NAME: webcaflocalpoc
+  WEBAPP_NAME: webcaflocalpoc
+  IMAGE_NAME: webcaf
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and push image in ACR
+        run: |
+          az acr build \
+            -r "${ACR_NAME}" \
+            -t "${IMAGE_NAME}:${GITHUB_SHA}" \
+            -t "${IMAGE_NAME}:latest" \
+            .
+
+      - name: Deploy to App Service
+        run: |
+          az webapp config container set \
+            -g "${RESOURCE_GROUP}" \
+            -n "${WEBAPP_NAME}" \
+            --docker-custom-image-name "${ACR_NAME}.azurecr.io/${IMAGE_NAME}:${GITHUB_SHA}" \
+            --docker-registry-server-url "https://${ACR_NAME}.azurecr.io"
+
+          az webapp restart -g "${RESOURCE_GROUP}" -n "${WEBAPP_NAME}"
