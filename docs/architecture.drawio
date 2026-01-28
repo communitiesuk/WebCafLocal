@@ -60,4 +60,212 @@
       </root>
     </mxGraphModel>
   </diagram>
+  <diagram name="C4-Context" id="c4-context">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="actor-assessor" value="Local Gov Assessor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="actor-admin" value="Service Owner / Admin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="system" value="WebCAF Local Government Service&#xa;(CAF self-assessment)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="380" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="idp" value="External IdP&#xa;(GOV.UK One Login / OIDC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="820" y="80" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="notify" value="GOV.UK Notify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="820" y="190" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="reporting" value="Reporting / Analytics&#xa;(optional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="820" y="300" width="240" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=block;html=1;" edge="1" parent="1" source="actor-assessor" target="system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="endArrow=block;html=1;" edge="1" parent="1" source="actor-admin" target="system">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="endArrow=block;html=1;" edge="1" parent="1" source="system" target="idp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="endArrow=block;html=1;" edge="1" parent="1" source="system" target="notify">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="endArrow=block;html=1;" edge="1" parent="1" source="system" target="reporting">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="C4-Container" id="c4-container">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="user" value="User (Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="webapp" value="Web App Container&#xa;Django + GOV.UK Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="60" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pdf" value="PDF Generation&#xa;WeasyPrint (in-process)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="380" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="db" value="Relational DB&#xa;PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="380" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="idp" value="OIDC Provider&#xa;(GOV.UK One Login)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="60" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="notify" value="GOV.UK Notify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="760" y="160" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=block;html=1;" edge="1" parent="1" source="user" target="webapp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="endArrow=block;html=1;" edge="1" parent="1" source="webapp" target="pdf">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="endArrow=block;html=1;" edge="1" parent="1" source="webapp" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="endArrow=block;html=1;" edge="1" parent="1" source="webapp" target="idp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="endArrow=block;html=1;" edge="1" parent="1" source="webapp" target="notify">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="C4-Component" id="c4-component">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="container" value="Web App (Django)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="120" y="60" width="820" height="520" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-auth" value="Auth / SSO&#xa;OIDC integration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="110" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-workflow" value="Assessment Workflow&#xa;Draft, sections, status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="460" y="110" width="420" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-framework" value="Framework Parser&#xa;(CAF / CE YAML)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="210" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-forms" value="Form Factory + Validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="460" y="210" width="420" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-report" value="Reporting / PDF Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="160" y="310" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-admin" value="Admin Views / Config" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="460" y="310" width="420" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="comp-orm" value="Persistence (Django ORM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="160" y="420" width="720" height="70" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="C4-Deployment" id="c4-deployment">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="users" value="End Users&#xa;(Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="40" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="containerapp" value="Azure Container Apps&#xa;Container App: webcaflocalpoc&#xa;- Django + Gunicorn&#xa;- OIDC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="360" y="170" width="380" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="log" value="Log Analytics&#xa;webcaflocalpoc-logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="780" y="200" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="postgres" value="Azure Database for PostgreSQL&#xa;Flexible Server: webcaflocalpoc&#xa;DB: webcaf" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="360" y="360" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="kv" value="Azure Key Vault&#xa;webcaflocalpockv&#xa;- django-secret-key&#xa;- database-url&#xa;- oidc-client-secret" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="280" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="acr" value="Azure Container Registry&#xa;webcaflocalpoc.azurecr.io&#xa;Image: webcaf:latest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="520" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="build" value="Build/Push&#xa;(az acr build or CI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="380" y="670" width="340" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="endArrow=block;html=1;" edge="1" parent="1" source="users" target="containerapp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="endArrow=block;html=1;" edge="1" parent="1" source="containerapp" target="log">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="endArrow=block;html=1;" edge="1" parent="1" source="containerapp" target="postgres">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="endArrow=block;html=1;" edge="1" parent="1" source="kv" target="containerapp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="endArrow=block;html=1;" edge="1" parent="1" source="acr" target="containerapp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" style="endArrow=block;html=1;" edge="1" parent="1" source="build" target="acr">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>
