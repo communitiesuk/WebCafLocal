@@ -268,4 +268,74 @@
       </root>
     </mxGraphModel>
   </diagram>
+  <diagram name="AWS-Deployment (Legacy)" id="aws-deployment">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="aws-users" value="End Users&#xa;(Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="40" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-alb" value="AWS ALB&#xa;(public ingress)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-ecs" value="ECS/Fargate Service&#xa;WebCAF Django App" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="360" y="230" width="380" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-rds" value="Amazon RDS (PostgreSQL)&#xa;RDS_* env vars" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="360" y="360" width="380" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-secrets" value="AWS Secrets Manager / SSM&#xa;DB creds + app secrets" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="280" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-ecr" value="Amazon ECR&#xa;Container image registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="480" width="380" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-actions" value="GitHub Actions&#xa;Build &amp; Push (OIDC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="380" y="600" width="340" height="70" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-logs" value="CloudWatch Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="780" y="260" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-oidc" value="GitHub OIDC Provider&#xa;(AWS IAM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="780" y="600" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="aws-e1" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-users" target="aws-alb">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e2" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-alb" target="aws-ecs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e3" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-ecs" target="aws-rds">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e4" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-secrets" target="aws-ecs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e5" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-ecr" target="aws-ecs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e6" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-actions" target="aws-ecr">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e7" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-actions" target="aws-oidc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="aws-e8" style="endArrow=block;html=1;" edge="1" parent="1" source="aws-ecs" target="aws-logs">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>

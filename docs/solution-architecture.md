@@ -2,226 +2,321 @@
 
 ## Document control
 
+Guidance:
+- Keep this accurate and up to date; use named roles rather than individuals if ownership may change.
+- Update version, status, and date whenever material changes are made.
+
 | Item | Value |
 | --- | --- |
-| Document owner | Solution Architect (Local Government) |
-| Author(s) | Solution Architect |
-| Reviewers | Product Owner, Security Lead, Platform/Azure Lead |
-| Version | 0.2 |
+| Document owner | TBD |
+| Author(s) | TBD |
+| Reviewers | TBD |
+| Version | 0.1 |
 | Status | Draft |
-| Last updated | 28 Jan 2026 |
+| Last updated | TBD |
 
 ## Purpose and scope
 
-- Purpose: Define the solution architecture for the WebCAF Local Government proof‑of‑concept (POC), derived from GovAssure WebCAF, and describe how it can evolve to a production‑ready service.
-- In scope: Web application, assessment workflows, data model, integrations (OIDC and Notify), Azure hosting, security controls, operations, and deployment automation (Terraform).
-- Out of scope: Production accreditation and operational runbook sign‑off, service transition contracts, and long‑term data retention policy (to be agreed).
+Guidance:
+- State why the document exists and who it is for (technical, security, delivery, governance).
+- Define what is in scope and explicitly call out what is not.
+
+Describe why this document exists and the boundaries of the solution.
+
+- Purpose: Provide a complete solution architecture for the WebCAF local government service.
+- In scope: Web application, data flows, integrations, infrastructure, security, operations.
+- Out of scope: TBD.
 
 ## Background and drivers
 
-- Problem statement: Local government organisations need a secure and usable way to complete CAF self‑assessments and evidence readiness. The POC validates the feasibility of reusing the GovAssure WebCAF approach for local government.
-- Policy drivers: NCSC CAF for local government; UK data protection (UK GDPR); GOV.UK Service Manual and Technology Code of Practice; accessibility and security obligations.
-- Business outcomes: Faster assessment completion, consistent data capture for assurance, reduced manual administration, and a reusable architecture for wider rollout.
+Guidance:
+- Explain the problem/opportunity and the policy or statutory drivers.
+- Capture the high‑level business outcomes expected from this solution.
+
+Summarize the problem, policy drivers, and business outcomes.
+
+- Problem statement: Local government organisations need a secure, consistent and user‑friendly way to complete CAF self‑assessments and manage evidence, replacing ad‑hoc spreadsheets and email‑based processes.
+- Policy drivers: NCSC CAF for local government; UK GDPR and data protection obligations; GOV.UK Service Manual and Technology Code of Practice; accessibility requirements.
+- Business outcomes: Higher completion rates, reduced admin effort, more consistent assessment data, faster assurance cycles, and clearer reporting for programme oversight.
 
 ## Objectives and success criteria
 
-- Objective 1: Provide a secure self‑assessment workflow (draft, complete, submit) for CAF and Cyber Essentials frameworks.
-- Objective 2: Capture structured assessment data for reporting and assurance.
-- Objective 3: Demonstrate Azure hosting and GOV.UK One Login integration in a sandbox environment.
+Guidance:
+- Objectives should be measurable and time‑bound where possible.
+- Success criteria should be verifiable (e.g., % completion, deployment time, performance).
 
-Success criteria:
-- Users can authenticate and complete an assessment end‑to‑end in the POC.
-- Assessment data is stored centrally in PostgreSQL and can be exported for reporting.
-- Deployment is repeatable via Terraform and container images.
+Define measurable objectives that indicate the solution is successful.
+
+- Objective 1: Enable local government users to authenticate and complete CAF self‑assessments end‑to‑end.
+- Objective 2: Capture structured assessment data for reporting and assurance.
+- Success criteria:
+  - At least 80% of pilot users complete a draft assessment without support.
+  - Assessment data is stored centrally and can be exported for reporting within 24 hours.
+  - Deployment is repeatable from code (Terraform + container image) in under 1 hour.
 
 ## Stakeholders and users
 
-- Business owner: Local Government sponsor / programme lead.
-- Product owner: Service product lead.
-- Delivery team: Developers, DevOps, security, UX.
-- User personas: Local government assessors, system owners, and administrators.
+Guidance:
+- List decision makers, delivery team, and user roles.
+- Include external stakeholders (security, data protection, operations).
+
+List stakeholders and primary user groups.
+
+- Business owner: TBD.
+- Product owner: TBD.
+- Delivery team: TBD.
+- User personas: TBD.
 
 ## Assumptions, constraints, and dependencies
 
-Assumptions:
-- Hosting is in Azure UK regions.
-- The POC uses a single primary region and a single database.
-- GOV.UK One Login is available for the chosen environment (integration/sandbox).
+Guidance:
+- Assumptions: things believed true for planning (and to be validated).
+- Constraints: non‑negotiable limits (budget, time, region, policy).
+- Dependencies: services or teams required for delivery.
 
-Constraints:
-- POC is not production‑ready; formal security accreditation is out of scope.
-- Data residency must remain within UK regions.
-- Cost and time are constrained to a pilot budget.
+Capture key assumptions and constraints that shape the design.
 
-Dependencies:
-- GOV.UK One Login (OIDC) for authentication.
-- GOV.UK Notify (optional) for transactional emails.
-- Azure Container Apps, ACR, Key Vault, Log Analytics, PostgreSQL Flexible Server.
-- Terraform for infrastructure provisioning.
+- Assumptions:
+  - Hosting will be in Azure UK regions.
+  - The solution remains a single web application for the POC.
+  - Users have access to GOV.UK One Login (or a suitable OIDC provider in sandbox).
+- Constraints:
+  - POC budget and timeline limit deep optimisation and multi‑region DR.
+  - Data residency must remain within the UK.
+  - Security accreditation is out of scope for the POC.
+- Dependencies:
+  - GOV.UK One Login (OIDC) for authentication.
+  - GOV.UK Notify (optional) for emails.
+  - Azure managed services: Container Apps, PostgreSQL Flexible Server, Key Vault, ACR, Log Analytics.
 
 ## Requirements
 
+Guidance:
+- Separate functional and non‑functional requirements.
+- Number requirements for traceability (FR‑01, NFR‑01, etc.).
+
 ### Functional requirements
 
-- FR‑01: User authentication (OIDC) with local profile mapping.
-- FR‑02: Admin setup for organisations, systems, and user profiles.
-- FR‑03: Create and manage CAF/CE draft assessments.
-- FR‑04: Save answers, compute completion status, and show progress by objective/section.
-- FR‑05: Generate and download assessment reports (PDF).
-- FR‑06: Audit and administrative views for configuration and cutoff dates.
+Guidance:
+- Describe user‑facing capabilities and core workflows.
+- Focus on “must have” POC requirements first.
+
+- FR-01: TBD.
+- FR-02: TBD.
 
 ### Non‑functional requirements
 
-- Availability: POC best‑effort; production target to be agreed (e.g., 99.5%).
-- Performance: Page responses within 2 seconds for typical form loads under expected load.
-- Scalability: Stateless web container; scale out via Container Apps; database vertical scaling.
-- Security: Secrets in Key Vault; TLS in transit; least‑privilege RBAC.
-- Privacy: UK GDPR compliance; DPIA required before production.
-- Accessibility: WCAG 2.2 AA alignment for user‑facing flows.
-- Compliance: CAF guidance, GOV.UK Service Manual, Technology Code of Practice.
+Guidance:
+- Include targets for availability, performance, security, privacy, accessibility, and compliance.
+- Note which NFRs are POC‑level vs production‑level.
+
+List NFRs with measurable targets.
+
+- Availability: TBD.
+- Performance: TBD.
+- Scalability: TBD.
+- Security: TBD.
+- Privacy: TBD.
+- Accessibility: TBD (eg WCAG 2.2 AA).
+- Compliance: TBD.
 
 ## Architecture overview
 
-Summary:
-- The system is a Django web application that provides CAF/CE workflows and stores assessment answers in PostgreSQL. It runs as a container in Azure Container Apps, uses Key Vault for secrets, and integrates with OIDC and optional GOV.UK Notify.
+Guidance:
+- Provide a concise summary of the target architecture and key decisions.
+- Note why the chosen approach fits the constraints and objectives.
 
-Key decisions:
-- Use a single Django application (monolith) for the POC for speed of delivery.
-- Store assessment answers as JSON in the `webcaf_assessment` table for flexibility.
-- Use Azure managed services (Container Apps, PostgreSQL Flexible Server, Key Vault).
-- Use Terraform for repeatable infrastructure deployments.
+Provide a short summary of the target architecture and key design choices.
+
+- Summary: TBD.
+- Key decisions: TBD.
 
 ### Architecture views (C4 recommended)
 
-- Context (C4 L1): `docs/architecture.drawio` → diagram **C4-Context**.
-- Container (C4 L2): `docs/architecture.drawio` → diagram **C4-Container**.
-- Component (C4 L3): `docs/architecture.drawio` → diagram **C4-Component**.
-- Deployment (C4 L4): `docs/architecture.drawio` → diagram **C4-Deployment**.
+Guidance:
+- Explain what each C4 level shows and reference the diagram names/locations.
+- Ensure diagrams are current and match the narrative.
+
+- C4 overview: We use the C4 model to describe the system at four levels of detail so stakeholders can understand purpose, structure, and deployment. Each level answers a different question and links to the diagrams in `docs/architecture.drawio`.
+- Context (C4 L1): Shows the system boundary, user roles, and external systems (e.g., OIDC, Notify). Diagram: **C4-Context**.
+- Container (C4 L2): Shows the major runtime containers (web app, database, PDF generation) and their interactions. Diagram: **C4-Container**.
+- Component (C4 L3): Breaks down the web application into logical modules (auth, workflow, framework parser, forms, reporting, persistence). Diagram: **C4-Component**.
+- Deployment (C4 L4): Shows the runtime infrastructure and cloud services (Container Apps, Key Vault, PostgreSQL, ACR, Log Analytics). Diagram: **C4-Deployment**.
 
 ## Application and service architecture
 
-- Core service: WebCAF Django application (UI + business logic).
-- Major modules:
-  - Authentication/SSO (OIDC and local dev auth).
-  - Assessment workflow (drafts, sections, completion status).
-  - Framework parser (CAF/CE YAML definitions).
-  - Form factory and validation.
-  - Reporting/PDF generation (WeasyPrint).
-  - Admin configuration (profiles, systems, settings).
-- Background jobs: None required for POC. Future options include scheduled report generation, notifications, and data exports.
+Guidance:
+- Describe the app structure, domain boundaries, and key services/modules.
+- Note any background tasks or scheduled jobs.
+
+Describe application structure, domains, and service boundaries.
+
+- Core services: TBD.
+- Modules and responsibilities: TBD.
+- Background jobs and schedulers: TBD.
 
 ## Data architecture
 
-- Data domains: organisations, systems, user profiles, assessments.
-- Primary store: PostgreSQL Flexible Server.
-- Core table: `webcaf_assessment` with answers in `assessments_data` (JSON).
-- Data relationships: see `docs/assessment-data-postgres.md`.
-- Data flows: Browser → Web App → PostgreSQL; secrets from Key Vault injected as env vars.
-- Data classification: Likely OFFICIAL (includes personal data such as contact names/emails). Confirm via DPIA.
-- Retention and deletion: Define policy with programme owner; POC uses default DB retention. Production must implement archival and deletion schedules.
+Guidance:
+- Describe data domains, storage locations, and key tables/fields.
+- Include data classification and retention expectations.
+
+Describe data sources, stores, and flows.
+
+- Data domains: TBD.
+- Data stores: TBD.
+- Data flows: TBD (add diagram).
+- Data classification: TBD.
+- Retention and deletion: TBD.
 
 ## Integration architecture
 
-- OIDC (GOV.UK One Login): OAuth2/OIDC flows for authentication and user mapping.
-- GOV.UK Notify (optional): For transactional emails (status, invitations).
-- Reporting (optional): Power BI or data extracts from PostgreSQL.
-- Protocols: HTTPS (OIDC, Notify), SQL/TLS (PostgreSQL), REST for app APIs.
-- Error handling: Retry external calls where safe; surface user‑friendly errors on auth failures.
+Guidance:
+- List external systems and the protocols used (OIDC, REST, etc.).
+- Document error handling, retries, and timeouts.
+
+List external systems and integration patterns.
+
+- External systems: TBD.
+- APIs and protocols: TBD.
+- Error handling and retries: TBD.
 
 ## Security architecture
 
-- Authentication: OIDC (GOV.UK One Login); local auth only for dev/sandbox if enabled.
-- Authorization: UserProfile‑based roles (admin, organisation lead/user).
-- Secrets management: Azure Key Vault for database credentials, OIDC secrets, Django secret key.
-- Encryption: TLS in transit; Azure‑managed encryption at rest for PostgreSQL and Key Vault.
-- Audit logging: Application logs to Log Analytics; admin actions audited via Django admin and history logs.
-- Threat model summary: Key risks are identity compromise, data leakage, and misconfiguration of cloud resources. Mitigated via RBAC, Key Vault, and monitoring.
+Guidance:
+- Cover identity, access control, secrets management, encryption, and audit logging.
+- Summarise key threats and mitigations appropriate for this stage.
+
+Describe identity, access, and security controls.
+
+- Authentication and authorization: TBD.
+- Secrets management: TBD.
+- Encryption in transit and at rest: TBD.
+- Audit logging: TBD.
+- Threat model summary: TBD.
 
 ## Infrastructure and deployment architecture
 
-- Environments: Dev and sandbox are implemented; test/prod to be defined.
-- Hosting model: Azure Container Apps (containerized Django app).
-- Data: Azure PostgreSQL Flexible Server.
-- Secrets: Azure Key Vault.
-- Images: Azure Container Registry.
-- Logging: Azure Log Analytics.
-- Provisioning: Terraform (`infra/terraform`).
-- CI/CD: GitHub Actions build/test and push images; ACR build supported.
-- Network topology: Public web ingress for the app; database secured via firewall rules. Production should consider private endpoints.
+Guidance:
+- Describe environments, hosting model, CI/CD, and network topology.
+- Call out differences between POC and production.
+
+Describe hosting, environments, and deployment workflows.
+
+- Environments: Dev, test, prod (TBD details).
+- Hosting model: TBD (eg container apps, AKS, VM).
+- CI/CD: TBD.
+- Network topology: TBD.
 
 ## Observability and operations
 
-- Logging: Structured application logs shipped to Log Analytics.
-- Metrics/alerts: Container Apps and PostgreSQL metrics monitored; alerting thresholds to be defined.
-- Incident response: Follow standard on‑call and incident management processes (to be defined).
-- Runbooks: Draft runbooks needed for restart, scaling, backup/restore, and key rotation.
+Guidance:
+- Specify logging, metrics, alerting, and incident response ownership.
+- Include runbook expectations (start/stop, backup, key rotation).
+
+Define monitoring, logging, and support processes.
+
+- Metrics and alerts: TBD.
+- Logging and audit trails: TBD.
+- Incident response: TBD.
+- Runbooks: TBD.
 
 ## Governance and decision records
 
+Guidance:
+- State how architectural decisions are captured and approved.
+- Provide ADR location and ownership.
+
+Use ADRs to capture key architectural decisions.
+
 - ADR framework: https://www.gov.uk/government/publications/architectural-decision-record-framework/architectural-decision-record-framework
-- ADR template (ADR‑000): https://assets.publishing.service.gov.uk/media/692471975f7777c304ba7ed7/ADR-000_Subject_of_Decision.docx
-- ADR register location: `docs/adr/` (to be created).
+- ADR template (ADR-000): https://assets.publishing.service.gov.uk/media/692471975f7777c304ba7ed7/ADR-000_Subject_of_Decision.docx
+- ADR register location: TBD.
 
 ## Standards and guidance alignment
 
-- NCSC Cyber Assessment Framework (CAF) for local government.
-- GOV.UK Service Manual and Technology Code of Practice.
-- GOV.UK One Login integration guidance.
-- UK GDPR and data handling standards.
-- Accessibility: WCAG 2.2 AA.
+Guidance:
+- List standards and policy guidance that the solution must align to.
+- Note any gaps or planned compliance work.
+
+Reference relevant government guidance and standards.
+
+- GOV.UK reference architecture guidance:
+  https://www.gov.uk/guidance/develop-your-data-and-apis-using-a-reference-architecture
+- GOV.UK Service Manual (governance principles):
+  https://www.gov.uk/service-manual/agile-delivery/governance-principles-for-agile-service-delivery
+- Other standards: TBD (eg NCSC CAF, Technology Code of Practice).
 
 ## Risks and mitigations
 
-- Risk: OIDC integration downtime or configuration errors.
-  - Mitigation: Environment‑specific configs, monitoring, and documented fallback.
-- Risk: Data sensitivity and privacy requirements not fully addressed in POC.
-  - Mitigation: DPIA, data classification review, and security assurance before production.
-- Risk: Single‑region deployment (no DR).
-  - Mitigation: Define RTO/RPO and implement backups/restore testing.
-- Risk: Vendor lock‑in to Azure managed services.
-  - Mitigation: Keep application containerized and infrastructure described via Terraform.
+Guidance:
+- Record top architectural risks and mitigation actions.
+- Revisit after major changes or new dependencies.
+
+Capture architectural risks and how they are addressed.
+
+- Risk 1: TBD.
+- Risk 2: TBD.
 
 ## Cost model and financial assumptions
 
-- Cost drivers: Container Apps consumption, PostgreSQL tier, Log Analytics ingestion/retention, Key Vault operations, ACR storage.
-- Estimated monthly cost: TBD (requires usage profile and log retention settings).
-- Cost risks: Log Analytics retention and database scaling can drive unexpected cost increases.
+Guidance:
+- Identify main cost drivers and assumptions.
+- Include expected cost ranges if available.
+
+Summarize expected costs and assumptions.
+
+- Cost drivers: TBD.
+- Estimated monthly cost: TBD.
+- Cost risks: TBD.
 
 ## Migration and transition plan
 
-- Current state: POC based on GovAssure WebCAF running in sandbox.
-- Target state: Production‑ready service with security accreditation, operational runbooks, and defined data governance.
-- Transition phases:
-  1) POC validation and user feedback.
-  2) Security and compliance hardening (DPIA, penetration testing).
-  3) Operational readiness (monitoring, runbooks, backups, DR).
-  4) Pilot with selected councils.
-  5) Wider rollout.
+Guidance:
+- Describe the path from POC to pilot/production.
+- Include phases, dependencies, and rollback considerations.
+
+Describe how to move from current to target state.
+
+- Current state summary: TBD.
+- Transition phases: TBD.
+- Cutover approach: TBD.
 
 ## Testing and assurance
 
-- Unit and integration testing: Django tests and integration tests in CI.
-- End‑to‑end testing: Playwright/Behave tests for key journeys.
-- Security testing: Dependency scanning, static analysis, and pen‑testing before production.
-- Service assessment readiness: Align with GOV.UK Service Standard and assurance requirements.
+Guidance:
+- List testing types and responsibilities (unit, integration, security, performance).
+- Include service assessment readiness and accreditation steps.
+
+Define testing and assurance approach.
+
+- Unit and integration testing: TBD.
+- Security testing: TBD.
+- Performance testing: TBD.
+- Service assessment readiness: TBD.
 
 ## Appendix
 
+Guidance:
+- Keep glossary and references short and relevant.
+
 ### Glossary
+
+Guidance:
+- Include key acronyms and service‑specific terms.
 
 - CAF: Cyber Assessment Framework.
 - ADR: Architectural Decision Record.
-- OIDC: OpenID Connect.
-- POC: Proof of Concept.
+- TBD: To be determined.
 
 ### References
 
+Guidance:
+- Link to authoritative sources and supporting internal docs.
+
 - Architectural Decision Record Framework (GOV.UK):
   https://www.gov.uk/government/publications/architectural-decision-record-framework/architectural-decision-record-framework
-- ADR‑000 template (GOV.UK):
+- ADR-000 template (GOV.UK):
   https://assets.publishing.service.gov.uk/media/692471975f7777c304ba7ed7/ADR-000_Subject_of_Decision.docx
 - Reference architecture guidance (GOV.UK):
   https://www.gov.uk/guidance/develop-your-data-and-apis-using-a-reference-architecture
-- Assessment data storage notes: `docs/assessment-data-postgres.md`
-- Dev Azure overview: `docs/dev-azure-overview.md`
-- One Login integration: `docs/govuk-one-login.md`
