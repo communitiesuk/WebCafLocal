@@ -143,6 +143,51 @@ Guidance:
 - Component (C4 L3): Breaks down the web application into logical modules (auth, workflow, framework parser, forms, reporting, persistence). Diagram: **C4-Component**.
 - Deployment (C4 L4): Shows the runtime infrastructure and cloud services (Container Apps, Key Vault, PostgreSQL, ACR, Log Analytics). Diagram: **C4-Deployment**.
 
+#### Diagram component list (what each box represents)
+
+**C4-Context**
+- Local Gov Assessor: primary end user completing assessments.
+- Service Owner / Admin: manages organisations, systems, profiles, and configuration.
+- WebCAF Local Government Service: the POC web application.
+- External IdP (OIDC): GOV.UK One Login or equivalent OIDC provider.
+- GOV.UK Notify: optional email delivery service.
+- Reporting/Analytics: optional downstream reporting tools (e.g., Power BI).
+
+**C4-Container**
+- User (Browser): web client for assessors/admins.
+- Web App Container: Django + GOV.UK Frontend serving UI and APIs.
+- PDF Generation: WeasyPrint used in-process for report export.
+- Relational DB: PostgreSQL used for core assessment data.
+- OIDC Provider: external identity provider.
+- GOV.UK Notify: optional email integration.
+
+**C4-Component**
+- Auth/SSO: OIDC login and local profile mapping.
+- Assessment Workflow: draft creation, section routing, completion status.
+- Framework Parser: CAF/CE YAML loading and interpretation.
+- Form Factory + Validation: dynamic form generation per framework.
+- Reporting/PDF Generation: export and rendering logic.
+- Admin Views/Config: admin UI and configuration management.
+- Persistence (Django ORM): database models and data access.
+
+**C4-Deployment (Azure)**
+- End Users: browser clients.
+- Azure Container Apps: hosts the WebCAF container.
+- Azure Database for PostgreSQL: primary datastore.
+- Azure Key Vault: secrets for DB and OIDC.
+- Azure Container Registry: image storage.
+- Log Analytics: logging and monitoring.
+- Build/Push: CI or ACR build step.
+
+**AWS-Deployment (Legacy)**
+- AWS ALB: public ingress/load balancer.
+- ECS/Fargate Service: runs the WebCAF container.
+- Amazon RDS (PostgreSQL): primary datastore (via RDS_* env vars).
+- Secrets Manager/SSM: DB credentials and app secrets.
+- Amazon ECR: image registry.
+- GitHub Actions (OIDC): CI/CD and federation to AWS IAM.
+- CloudWatch Logs: application and container logs.
+
 ## Application and service architecture
 
 Guidance:
