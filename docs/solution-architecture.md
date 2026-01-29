@@ -152,6 +152,7 @@ Guidance:
 - External IdP (OIDC): GOV.UK One Login or equivalent OIDC provider.
 - GOV.UK Notify: optional email delivery service.
 - Reporting/Analytics: optional downstream reporting tools (e.g., Power BI).
+<img width="1073" height="395" alt="image" src="https://github.com/user-attachments/assets/358a2279-f77b-4189-b7bd-377c83c5a44a" />
 
 **C4-Container**
 - User (Browser): web client for assessors/admins.
@@ -160,6 +161,7 @@ Guidance:
 - Relational DB: PostgreSQL used for core assessment data.
 - OIDC Provider: external identity provider.
 - GOV.UK Notify: optional email integration.
+<img width="1041" height="397" alt="image" src="https://github.com/user-attachments/assets/a6685e9c-e09f-4be9-b506-3196a7534808" />
 
 **C4-Component**
 - Auth/SSO: OIDC login and local profile mapping.
@@ -169,6 +171,7 @@ Guidance:
 - Reporting/PDF Generation: export and rendering logic.
 - Admin Views/Config: admin UI and configuration management.
 - Persistence (Django ORM): database models and data access.
+<img width="907" height="577" alt="image" src="https://github.com/user-attachments/assets/0cf6ac3b-c062-42ff-90bf-ebf024cab247" />
 
 **C4-Deployment (Azure)**
 - End Users: browser clients.
@@ -178,6 +181,7 @@ Guidance:
 - Azure Container Registry: image storage.
 - Log Analytics: logging and monitoring.
 - Build/Push: CI or ACR build step.
+<img width="1029" height="742" alt="image" src="https://github.com/user-attachments/assets/bf0c2601-182a-48c4-acfd-e1daf6570301" />
 
 **AWS-Deployment (Legacy)**
 - AWS ALB: public ingress/load balancer.
@@ -187,6 +191,7 @@ Guidance:
 - Amazon ECR: image registry.
 - GitHub Actions (OIDC): CI/CD and federation to AWS IAM.
 - CloudWatch Logs: application and container logs.
+<img width="1085" height="745" alt="image" src="https://github.com/user-attachments/assets/85e1772d-a663-4bbd-95f0-422a10ed7889" />
 
 ## Application and service architecture
 
