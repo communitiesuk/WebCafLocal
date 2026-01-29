@@ -213,11 +213,27 @@ Guidance:
 
 Describe data sources, stores, and flows.
 
-- Data domains: TBD.
-- Data stores: TBD.
-- Data flows: TBD (add diagram).
-- Data classification: TBD.
-- Retention and deletion: TBD.
+- Data domains:
+  - Organisations (name, type, contacts)
+  - Systems (type, hosting, ownership, corporate services)
+  - User profiles (user ↔ organisation role)
+  - Assessments (status, framework, profile, period, review type)
+  - Assessment answers (JSON in `assessments_data`)
+  - Configuration (assessment period and defaults)
+  - Audit/history (via `simple_history`)
+- Data stores:
+  - PostgreSQL Flexible Server (primary relational store)
+  - JSON field `webcaf_assessment.assessments_data` for all answers
+- Data flows:
+  - User/admin inputs → Web app → PostgreSQL
+  - Report generation reads `assessments_data` → PDF output
+  - Optional exports for reporting (e.g., Power BI) from PostgreSQL
+- Data classification:
+  - Likely OFFICIAL, includes personal data (contact details, user accounts) and system information.
+- Retention and deletion:
+  - POC retains data indefinitely in PostgreSQL; no automated retention.
+  - Production policy to define retention, archival, and deletion schedules aligned to UK GDPR.
+  - See `docs/assessment-data-postgres.md` for table details.
 
 ## Integration architecture
 
