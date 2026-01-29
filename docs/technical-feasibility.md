@@ -66,3 +66,15 @@ The sandbox test demonstrates that the core architecture and One Login integrati
 3. Complete performance testing and cost modelling.
 4. Define DR objectives and validate backups/restore.
 5. Confirm reporting requirements and Power BI dataset design.
+
+
+## AWS vs AZure 
+
+
+AWS:
+<img width="1068" height="706" alt="image" src="https://github.com/user-attachments/assets/432eaf69-1b09-4a7d-aec0-5523d85f8af8" />
+
+Azure:
+<img width="1067" height="739" alt="image" src="https://github.com/user-attachments/assets/48e33633-2985-4139-ac5a-5a2da85a4228" />
+
+
