@@ -1,5 +1,34 @@
 # Solution Architecture Document - WebCAF (Local Government)
 
+## Table of contents
+
+- [Document control](#document-control)
+- [Purpose and scope](#purpose-and-scope)
+- [Background and drivers](#background-and-drivers)
+- [Objectives and success criteria](#objectives-and-success-criteria)
+- [Stakeholders and users](#stakeholders-and-users)
+- [Assumptions, constraints, and dependencies](#assumptions-constraints-and-dependencies)
+- [Requirements](#requirements)
+  - [Functional requirements](#functional-requirements)
+  - [Non-functional requirements](#non-functional-requirements)
+- [Architecture overview](#architecture-overview)
+  - [Architecture views (C4 recommended)](#architecture-views-c4-recommended)
+- [Application and service architecture](#application-and-service-architecture)
+- [Data architecture](#data-architecture)
+- [Integration architecture](#integration-architecture)
+- [Security architecture](#security-architecture)
+- [Infrastructure and deployment architecture](#infrastructure-and-deployment-architecture)
+- [Observability and operations](#observability-and-operations)
+- [Governance and decision records](#governance-and-decision-records)
+- [Standards and guidance alignment](#standards-and-guidance-alignment)
+- [Risks and mitigations](#risks-and-mitigations)
+- [Cost model and financial assumptions](#cost-model-and-financial-assumptions)
+- [Migration and transition plan](#migration-and-transition-plan)
+- [Testing and assurance](#testing-and-assurance)
+- [Appendix](#appendix)
+  - [Glossary](#glossary)
+  - [References](#references)
+
 ## Document control
 
 Guidance:
